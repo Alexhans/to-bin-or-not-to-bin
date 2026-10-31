@@ -1,0 +1,13 @@
+# Run `prek install` once (or `pre-commit install`). On every commit that touches a page,
+# scripts/nav.py rewrites the Previous/Next lines and the chapter lists between their
+# <!-- … --> guards, and checks every relative link. If it changed anything, the commit
+# stops: look at the diff, `git add` it, and commit again.
+repos:
+  - repo: local
+    hooks:
+      - id: tutorial-nav
+        name: tutorial navigation and links
+        entry: uv run python scripts/nav.py
+        language: system
+        files: ^(README\.md|steps/|tracks/|docs/|scripts/nav\.py)
+        pass_filenames: false

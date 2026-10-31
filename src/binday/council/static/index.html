@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bin collection days | Dilly Dally Borough Council</title>
+  <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <span class="crest" aria-hidden="true">♻</span>
+      <span class="name">Dilly Dally Borough Council</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="today">Today is <time datetime="{{TODAY_ISO}}">{{TODAY}}</time></p>
+    <h1>Find your bin collection day</h1>
+    <p>Rubbish and recycling are collected on alternate weeks. Food waste is collected every week.</p>
+
+    <form id="postcode-form">
+      <label for="postcode">Postcode</label>
+      <div class="row">
+        <input id="postcode" name="postcode" autocomplete="postal-code" placeholder="FX1 2ZZ" required>
+        <button type="submit">Find address</button>
+      </div>
+    </form>
+
+    <form id="address-form" hidden>
+      <label for="address">Select your address</label>
+      <div class="row">
+        <select id="address" name="uprn" required></select>
+        <button type="submit">Show collections</button>
+      </div>
+    </form>
+
+    <p id="message" role="status"></p>
+
+    <section id="results" hidden>
+      <h2 id="results-title"></h2>
+      <table>
+        <thead><tr><th>Container</th><th>Next collection</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <p class="hint">Put your bins out by 7am on the day of collection.</p>
+    </section>
+  </main>
+
+  <footer class="wrap">Dilly Dally Borough is a made-up council for a tutorial. No real addresses are used.</footer>
+  <script src="static/app.js"></script>
+</body>
+</html>

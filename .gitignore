@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.airflow/
+steps/*/sandbox/*
+!steps/*/sandbox/.gitkeep
+tracks/*/*-on-a-schedule/alerts.log
+tracks/*/*-on-a-schedule/last-run.json
+tracks/*/*-on-a-schedule/run.log
+tracks/agent/alerts.log
+tracks/*/*-cheaper-model/results/
+tracks/*/*/sandbox/*
+!tracks/*/*/sandbox/.gitkeep
