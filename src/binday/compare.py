@@ -19,7 +19,10 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from binday.llm import connection
+
 USAGE = re.compile(r"tokens_read=(\d+) tokens_written=(\d+) seconds=([\d.]+)(?: cost_usd=([\d.]+))?")
+CONN_SETTING = "BINDAY_MODEL"  # the Airflow track's setting; the coding agent track's is BINDAY_CLAUDE_MODEL
 
 
 @dataclass
@@ -54,9 +57,14 @@ def one_run(chapter: Path, setting: str, model: str, n: int, results: Path) -> R
     report = results / f"{chapter.name}-{model.replace(':', '_').replace('/', '_')}-run{n}.xml"
     report.unlink(missing_ok=True)
     started = time.monotonic()
+    env = {**os.environ, setting: model}
+    if setting == CONN_SETTING:
+        # The Airflow track asks the model through a connection, so each run rebuilds it for its own
+        # model: setting only BINDAY_MODEL would leave a connection made earlier in charge.
+        env["AIRFLOW_CONN_BINDAY_LLM"] = connection(model)
     subprocess.run([sys.executable, "-m", "pytest", str(chapter), "-m", "agent", "-n", "4", "-q",
                     f"--junitxml={report}", "-o", "junit_logging=system-out"],
-                   env={**os.environ, setting: model}, capture_output=True, text=True)
+                   env=env, capture_output=True, text=True)
     run = Run(seconds=time.monotonic() - started)
     if not report.exists():
         run.failures.append(("the checks", "didn't run; try them on their own with pytest to see why"))

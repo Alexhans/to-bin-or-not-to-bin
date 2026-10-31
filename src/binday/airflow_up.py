@@ -36,4 +36,10 @@ def main() -> None:
     with socket.socket() as s:
         if s.connect_ex(("127.0.0.1", 8111)) != 0:
             sys.exit("Start the council first, in another terminal: uv run council")
+    # A model server you run yourself often sits on 8080 too, and Airflow fails confusingly when it's taken.
+    port = int(env.get("AIRFLOW__API__PORT", "8080"))
+    with socket.socket() as s:
+        if s.connect_ex(("127.0.0.1", port)) == 0:
+            sys.exit(f"Something already answers on port {port}, where Airflow's UI wants to run. "
+                     f"Stop it, or move Airflow: AIRFLOW__API__PORT=8090 uv run --extra airflow airflow-up")
     os.execvp("airflow", ["airflow", "standalone"])

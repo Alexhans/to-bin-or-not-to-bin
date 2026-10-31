@@ -19,6 +19,7 @@ If you don't, here's what I'd pick depending on your situation.
 | Already paying for GitHub Copilot | `github-copilot:<model>` | Your Copilot login (untested) |
 | Already paying for Claude | No direct route from code | Use OpenRouter, or follow the coding agent track, which runs on your Claude Code login |
 | Offline, or don't want to pay | `ollama:gpt-oss:20b` | [Ollama](https://ollama.com) running locally (untested) |
+| Running your own server (llama.cpp, vLLM, LM Studio, or any OpenAI-compatible router) | `openai-chat:<model as your server names it>` | `BINDAY_BASE_URL=http://localhost:8081/v1`, plus `BINDAY_API_KEY` if it asks for one (defaults to `local`) |
 
 [OpenRouter](https://openrouter.ai) is the one I'd suggest if you don't have anything yet.
 You pay per call in one place, you can set a spending limit, and you can switch between
@@ -30,3 +31,15 @@ call costs you before you schedule it.
 > The subscription routes use your plan's usage limits, and running something on a
 > schedule falls under each company's terms for that plan. Read them before you leave it
 > running.
+
+> [!NOTE]
+> **A server you run yourself.** `openai:` asks for OpenAI's Responses API, which your own
+> server almost certainly doesn't offer: use `openai-chat:` for the Chat Completions API it
+> does speak. If you set `BINDAY_BASE_URL` together with `openai:`, the tutorial says so and
+> names the string to use instead.
+>
+> Two things to expect when you run the model yourself: the cost column shows `-`, because
+> there is no price list for a model you host (tokens and seconds are still measured), and
+> Airflow's UI wants port 8080, a popular port for a model server. If something already
+> answers there, `airflow-up` stops and tells you; run it with `AIRFLOW__API__PORT=8090` and
+> open the UI on that port instead.
