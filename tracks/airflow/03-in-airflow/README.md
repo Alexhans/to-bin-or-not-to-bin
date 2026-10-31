@@ -71,7 +71,7 @@ uv run --extra airflow airflow-up
 which starts all of Airflow in this one terminal.
 
 Once you see the terminal stops scrolling, Airflow should be up and running and you can open it on <http://localhost:8080>.
-You should see our `bin_day` dag in the list of dags.
+You should see our `bin_day` Dag in the list of Dags.
 
 <details>
 <summary>What <code>airflow-up</code> sets up</summary>
@@ -201,11 +201,11 @@ nothing yet, since it has no schedule.
 ## Check it
 
 In step 2 you checked the skill's answer for two days whose answers you knew. You can now run those checks,
-in [`test_in_airflow.py`](test_in_airflow.py), which run the dag and compare what 
+in [`test_in_airflow.py`](test_in_airflow.py), which run the Dag and compare what 
 `ask_the_agent` returns. 
 
 One cool thing is that they don't really need for your Airflow instance to be up. 
-Airflow's [dag.test()](https://airflow.apache.org/docs/apache-airflow/2.5.3/core-concepts/executor/debug.html) runs a dag in a single python process.
+Airflow's [dag.test()](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/debug.html) runs a Dag in a single python process.
 
 The test looks like this:
 

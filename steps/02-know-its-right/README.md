@@ -9,7 +9,7 @@
 So far, you've compared the agent's answer with the one you found by hand. This means that every time you 
 change the solution, you'd have to manually compare again.
 
-I'ts also tempting to start guessing what to change: the prompt, the tools, the model. 
+It's also tempting to start guessing what to change: the prompt, the tools, the model. 
 More important than that is finding a way to check, after each change, that the solution still does 
 what it did before. Programmers call that refactoring: changing how something works on 
 the inside (code) without changing what it does from the outside (observable behaviour).  
@@ -91,7 +91,7 @@ def test_ordinary_week(council):
 `ask_agent` asks your skill from step 1 about a specific day: 2026-08-22. `assert facts == BinDayFacts(...)` checks 
 that what the agent returned must equal the answer you found by hand; if they differ, the test
 fails and shows the difference. [`pytest`](https://docs.pytest.org) is a popular testing library 
-that works by running every function whose name start with `test_`.  If it says `SKIPPED`, it couldn't find your
+that works by running every function whose name starts with `test_`.  If it says `SKIPPED`, it couldn't find your
 skill.  You can point your coding agent to it to learn more about it and why we pass the council information as a parameter.
 
 <details>
@@ -134,7 +134,7 @@ website on a free port, so yours can keep running.
 
 </details>
 
-A test like this is often called an [AI eval](https://ai-evals.io/). It's an assertion over the result of LLM inference (what the agent returned).  Note that We're using a deterministic assertion, not LMMaaJ (LLM as a Judge).
+A test like this is often called an [AI eval](https://ai-evals.io/). It's an assertion over the result of LLM inference (what the agent returned).  Note that we're using a deterministic assertion, not LLMaaJ (LLM as a Judge).
 
 ## Break it on purpose
 

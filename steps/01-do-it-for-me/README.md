@@ -125,7 +125,7 @@ worse. Here, better could mean faster, cheaper, or both, looking at numbers such
 Another type of improvement, regardless of time and money saved, is a better user experience (UX) 
 by making the ask smaller and repeatable: you just write "Do I need to put the bins out?" instead of filling a larger, more detailed prompt every time.
 
-Next you'll ask the same thing twice, to compare time and cost between the same probelm with and without the skill. You're applying the scientific method in miniature: measure one situation, then the other, and see whether there's a difference. There are more thorough ways to do this, but this is enough to start with, and you can ask your coding agent to help you set up comparisons like it.
+Next you'll ask the same thing twice, to compare time and cost between the same problem with and without the skill. You're applying the scientific method in miniature: measure one situation, then the other, and see whether there's a difference. There are more thorough ways to do this, but this is enough to start with, and you can ask your coding agent to help you set up comparisons like it.
 
 `claude -p` runs one prompt and exits, and with `--output-format json` it also reports
 the model that ran, the turns, seconds, tokens and cost. From `sandbox`:

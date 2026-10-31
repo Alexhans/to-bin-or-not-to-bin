@@ -8,8 +8,8 @@
 
 Look at the path so far. You had an agent skill, and the agent solved a lot at inference time.
 Then the Dag took over the schedule and the decision, and the agent was left as a web scraper
-of sorts. [Can you go further?](https://alexhans.github.io/talks/airflow-summit/2026/it-works-now-what/#/move-more-out-of-inference).  Yes you can.  What I run at home doesn't use AI at all. I use AI to evolve the dag 
-as my needs change, but the dag itself runs as a plain scraper against the same checks.
+of sorts. [Can you go further?](https://alexhans.github.io/talks/airflow-summit/2026/it-works-now-what/#/move-more-out-of-inference).  Yes you can.  What I run at home doesn't use AI at all. I use AI to evolve the Dag 
+as my needs change, but the Dag itself runs as a plain scraper against the same checks.
 
 It costs almost nothing to run: no inference, just the electricity of the machine it runs on.
 It's faster, easier to optimise, and it removes the uncertainty of a model's answers, since
@@ -114,7 +114,7 @@ What happens when the council changes its website? The scraper part will break a
 That hasn't happened yet, and I'm not sure I want to pay for inference every evening in case it
 does, but I can set alerts and deal with it in two ways:
 
-- On alert, operating on the dag and fixing the scraper.  Probably using a coding agent to create an updated version of the python code that scrapes.
+- On alert, operating on the Dag and fixing the scraper.  Probably using a coding agent to create an updated version of the python code that scrapes.
 - On alert, auto-remediate by having that previous step be performed automatically.
 
 The agent will have the logs to root cause, and the checks to honor, so it's just hooking up the loop to your alerting flow.

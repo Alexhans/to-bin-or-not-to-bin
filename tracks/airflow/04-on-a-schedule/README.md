@@ -20,7 +20,7 @@ From the talk: the slide [From Agent Skill to Airflow Dag](https://alexhans.gith
 
 ## Decide what should happen
 
-Running the dag every evening changes what it has to do. When you were the one triggering it, 
+Running the Dag every evening changes what it has to do. When you were the one triggering it, 
 you read the answer yourself and decided whether to put the bins out. When it runs by itself, it has to make that decision for you: on most evenings the next collection is days away and it should stay quiet, and on the evening before a collection it should tell you, but only once.
 
 So you need it to run daily, and not just Wednesdays because you're not guaranteed that collections will be on Thursdays.  For example, in New Year's week the council may move the collection to a Saturday and by having it run daily, you're able to adjust by receiving the notification the day before.
@@ -74,7 +74,7 @@ def act(answer: BinDayAlert, alerts_file: Path) -> str:
 
 `tell_me` calls `act` and prints the answer and the alert decision. 
 
-It's important to note that we didn't get the agent the power to alert. Only to pass their information to the next task.  This is a good way to limit the blast radius of what an agent can do when they make a mistake.
+It's important to note that we didn't give the agent the power to alert. Only to pass their information to the next task.  This is a good way to limit the blast radius of what an agent can do when they make a mistake.
 
 > [!NOTE]
 > The alert here is a line in a file, so the tutorial works without any accounts. To get it on
@@ -86,7 +86,7 @@ It's important to note that we didn't get the agent the power to alert. Only to 
 The checks are in [`test_on_a_schedule.py`](test_on_a_schedule.py). The Dag now does two things:
 the agent reads the website, and then plain Python decides whether to alert you and writes the
 alert. The checks that have to wait for the AI agent will take a few seconds whereas the checks that 
-are pure python will be a few miliseconds.
+are pure python will be a few milliseconds.
 
 One of the python only tasks is `act` which holds the decision and the alert, so a check can pass it an answer you wrote yourself, as if the agent had said the bins go out tonight, and then read the alerts file to see what it did:
 
